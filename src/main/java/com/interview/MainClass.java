@@ -7,17 +7,38 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class MainClass {
+    long n = 3;
+    static long result = 1;
+
     public static void main(String[] args) {
 
-        boolean result = method("test", "ttew");
-        System.out.println(result);
+        boolean result1 = method("test", "ttew");
+        System.out.println(result1);
         replaceAllZeroWithOne(82302300);
-    }
+        fact(5);
+        System.out.println("fact ="+ result);
 
+        Object obj1;
+        Object obj2;
+    }
     public static void replaceAllZeroWithOne(int num){
         int num1 = Integer.parseInt(String.valueOf(num).replaceAll("0","1"));
         System.out.println("Input="+num);
         System.out.println("Output="+num1);
+
+
+    }
+
+    static long fact(long n){
+
+        if(n<=1){
+            return result;
+        }
+        else{
+            result = result * n;
+            fact(n-1);
+        }
+        return result;
     }
 
     public static boolean method(@NotNull String str1, @NotNull String str2){
