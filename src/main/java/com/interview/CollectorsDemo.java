@@ -13,7 +13,7 @@ public class CollectorsDemo {
         studentList.add(new Student("Harish", 13, "History", 83));
         studentList.add(new Student("Xiano", 14, "Literature", 71));
         studentList.add(new Student("Soumya", 15, "Economics", 77));
-        studentList.add(new Student("Asif", 16, "Mathematics", 89));
+        studentList.add(new Student("Asif", 16, "xsxszxqasAAC1XZB", 89));
         studentList.add(new Student("Nihira", 17, "Computer Science", 84));
         studentList.add(new Student("Mitshu", 18, "History", 73));
         studentList.add(new Student("Vijay", 19, "Mathematics", 92));
@@ -42,6 +42,19 @@ public class CollectorsDemo {
 
         Map<Integer, List<Student>> groupByName = studentList.stream().collect(Collectors.groupingBy(Student::getPercentage));
         System.out.println(groupByName);
+
+        List<String> nameList= studentList.stream().map(a->a.getName()).collect(Collectors.toList());
+        nameList.add("Paul");
+        nameList.add("Zevin");
+        nameList.add("Harish");
+        System.out.println(nameList);
+        nameList = nameList.stream().distinct().collect(Collectors.toList());
+        System.out.println(nameList);
+
+
+      Optional<Student> s = studentList.stream().collect(Collectors.maxBy(Comparator.comparing(e-> e.getPercentage())));
+
+        System.out.println(s.get());
 
     }
 }
