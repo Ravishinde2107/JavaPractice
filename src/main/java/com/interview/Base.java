@@ -1,8 +1,11 @@
 package com.interview;
 
 import java.io.IOException;
+import java.util.HashSet;
 
-
+interface BaseInterface{
+    int i=1;
+}
 class Derived extends Base{
     // public final void printData(){} -- Cant override final method
 
@@ -18,9 +21,9 @@ class Derived extends Base{
         System.out.println("Derived staticMethod method");
     }
 
-    int i =20;
-    public void print(int i){
-        System.out.println("Derived print method i = "+i);
+    String str ="DerivedClass";
+    public void print( String str){
+        System.out.println("Derived print method str = "+str);
     }
 }
 
@@ -38,13 +41,29 @@ public class Base {
         System.out.println("Base staticMethod method");
     }
 
-    int i =10;
-    public void print(int i){
-        System.out.println("Derived print method i = "+i);
+    String str ="BaseClass";
+    public void print( String str){
+        System.out.println("Base print method str = "+str);
     }
 
-    public static void main(String[] args) {
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        //return super.clone();
+        return this;
+    }
+
+    public static void main(String[] args) throws CloneNotSupportedException {
         Base b = new Derived();
-        b.print(b.i); // overrideing not apply on instance veriable
+        //BaseInterface.i=20; //cant assign value to final value
+        b.print(b.str); // overrideing not apply on instance veriable
+
+        //try{
+            //throw 10;
+       // }catch(int e){}  //Required Typeis throwable
+        Base b1 = (Base) b.clone();
+        b1.str="CloneClass";
+        b.print(b.str);
+        b1.print(b1.str);
+        new HashSet<String>().add("");
     }
 }
